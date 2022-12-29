@@ -1,43 +1,35 @@
 function fibs(n) {
+  const first = 0;
+  const second = 1;
+  const array = [first, second];
 
-    const first = 0;
-    const second = 1;
-    let array = [first, second];
+  if (n <= 0) return null;
+  if (n == 1) return [first];
+  if (n == 2) return array;
 
-    if (n <= 0) return null;
-    if (n == 1) return [first];
-    if (n == 2) return array;
-    else {
-        for(let i = 3; i <= n; i++){
-            let newNumber = array[i-3] + array[i-2];
-            array.push(newNumber);
-            
-        }
-        return array;
-    }
+  for (let i = 3; i <= n; i += 1) {
+    const newNumber = array[i - 3] + array[i - 2];
+    array.push(newNumber);
+  }
+  return array;
 }
 
-console.log(fibs(8)); //[0, 1, 1,  2, 3, 5, 8, 13]
+console.log(fibs(8)); // [0, 1, 1,  2, 3, 5, 8, 13]
 
 function fibsRec(n) {
+  const first = 0;
+  const second = 1;
+  let array = [first, second];
 
-    const first = 0;
-    const second = 1;
-    let array = [first, second];
+  if (n <= 0) return null;
+  if (n == 1) return [first];
+  if (n == 2) return array;
 
-    if (n <= 0) return null;
-    if (n == 1) return [first];
-    if (n == 2) return array;
-    else {
+  array = fibsRec(n - 1);
+  const newNumber = array[n - 3] + array[n - 2];
+  array.push(newNumber);
 
-        let array = fibsRec(n-1);
-        let newNumber = array[n-3] + array[n-2];
-        array.push(newNumber);
-
-        return array;
-            
-    }
-
+  return array;
 }
 
-console.log(fibsRec(8)); //[0, 1, 1, 2, 3, 5, 8]
+console.log(fibsRec(8)); // [0, 1, 1, 2, 3, 5, 8]

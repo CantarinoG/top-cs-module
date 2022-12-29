@@ -1,8 +1,6 @@
-import { BinaryTree } from "./BinaryTree.js";
+import { BinaryTree } from './BinaryTree.js';
 
-const randomArray = (size) => {
-  return Array.from({ length: size }, () => Math.floor(Math.random() * 100));
-}
+const randomArray = (size) => Array.from({ length: size }, () => Math.floor(Math.random() * 100));
 
 const tree = new BinaryTree(randomArray(20));
 

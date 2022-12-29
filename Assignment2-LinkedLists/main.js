@@ -1,8 +1,6 @@
-//File for tests
+// File for tests
 
-import { Node } from './Node.js';
-import { LinkedList } from './LInkedList.js';
-
+import { LinkedList } from './LinkedList.js';
 
 const list = new LinkedList();
 
@@ -17,4 +15,3 @@ list.removeAt(0);
 
 console.log(list.toString());
 console.log('Size: ', list.size());
-

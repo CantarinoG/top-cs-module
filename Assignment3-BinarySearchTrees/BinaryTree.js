@@ -9,24 +9,28 @@ export class BinaryTree {
   buildTree(sortedArray) {
     if (sortedArray.length === 0) return null;
 
-    const middleIndex = Math.floor(sortedArray.length / 2); //middle index of the sorted array
-    const newNode = new Node(sortedArray[middleIndex]); //Node with element at the middle
-    newNode.leftChild = this.buildTree(sortedArray.slice(0, middleIndex)); //left child receives the level 0 root node from first half of the array
-    newNode.rightChild = this.buildTree(sortedArray.slice(middleIndex + 1)); //right child receives the level 0 root node from second half of the array
-    //That's recursive, so each sub array gets divided until it's lenght is null and the tree is built with every single element
-    return newNode; 
+    const middleIndex = Math.floor(sortedArray.length / 2); // middle index of the sorted array
+    const newNode = new Node(sortedArray[middleIndex]); // Node with element at the middle
+    newNode.leftChild = this.buildTree(sortedArray.slice(0, middleIndex));
+    // left child receives the level 0 root node from first half of the array
+    newNode.rightChild = this.buildTree(sortedArray.slice(middleIndex + 1));
+    // right child receives the level 0 root node from second half of the array
+    // That's recursive, so each sub array gets divided until it's lenght is null
+    // and the tree is built with every single element
+    return newNode;
   }
 
   insert(value, currentNode = this.root) {
     if (currentNode === null) return new Node(value);
-    if (currentNode.value === value) return;
+    if (currentNode.value === value) return undefined;
 
     if (currentNode.value < value) {
       currentNode.rightChild = this.insert(value, currentNode.rightChild);
     } else {
       currentNode.leftChild = this.insert(value, currentNode.leftChild);
     }
-    //That's recursive, so the new value keeps entering in either the left or the right side of the tree until it reaches a leaf node
+    // That's recursive, so the new value keeps entering in either the left
+    // or the right side of the tree until it reaches a leaf node
     return currentNode;
   }
 
@@ -45,14 +49,15 @@ export class BinaryTree {
 
   find(value, node = this.root) {
     if (node === null || node.value === value) return node;
-    //Base case: stops when node.value === value
+    // Base case: stops when node.value === value
 
     if (node.value < value) {
       return this.find(value, node.rightChild);
-    } else {
-      return this.find(value, node.leftChild);
     }
-    //Uses recursiveness to navigate through the tree until if finds the value, which finishes the recursion
+    return this.find(value, node.leftChild);
+
+    // Uses recursiveness to navigate through the tree until if
+    // finds the value, which finishes the recursion
   }
 
   levelOrder(callbackFn) {
@@ -60,23 +65,35 @@ export class BinaryTree {
     const levelOrderList = [];
     while (queue.length > 0) {
       const currentNode = queue.shift();
-      callbackFn ? callbackFn(currentNode) : levelOrderList.push(currentNode.value);
+
+      if (callbackFn) {
+        callbackFn(currentNode);
+      } else {
+        levelOrderList.push(currentNode.value);
+      }
 
       const enqueueList = [
         currentNode?.leftChild,
-        currentNode?.rightChild
+        currentNode?.rightChild,
       ].filter((value) => value);
       queue.push(...enqueueList);
     }
     if (levelOrderList.length > 0) return levelOrderList;
+    return undefined;
   }
 
-  //The following functions get the values in different orders: LVR, VLR and LRV
+  // The following functions get the values in different orders: LVR, VLR and LRV
   inorder(callbackFn, node = this.root, inorderList = []) {
     if (node === null) return;
 
     this.inorder(callbackFn, node.leftChild, inorderList);
-    callbackFn ? callbackFn(node) : inorderList.push(node.value);
+
+    if (callbackFn) {
+      callbackFn(node);
+    } else {
+      inorderList.push(node.value);
+    }
+
     this.inorder(callbackFn, node.rightChild, inorderList);
 
     if (inorderList.length > 0) return inorderList;
@@ -85,7 +102,12 @@ export class BinaryTree {
   preorder(callbackFn, node = this.root, preorderList = []) {
     if (node === null) return;
 
-    callbackFn ? callbackFn(node) : preorderList.push(node.value);
+    if (callbackFn) {
+      callbackFn(node);
+    } else {
+      preorderList.push(node.value);
+    }
+
     this.preorder(callbackFn, node.leftChild, preorderList);
     this.preorder(callbackFn, node.rightChild, preorderList);
 
@@ -95,9 +117,14 @@ export class BinaryTree {
   postorder(callbackFn, node = this.root, postorderList = []) {
     if (node === null) return;
 
-    this.postorder(callbackFn, node.leftChild, postorderList,);
+    this.postorder(callbackFn, node.leftChild, postorderList);
     this.postorder(callbackFn, node.rightChild, postorderList);
-    callbackFn ? callbackFn(node) : postorderList.push(node.value);
+
+    if (callbackFn) {
+      callbackFn(node);
+    } else {
+      postorderList.push(node.value);
+    }
 
     if (postorderList.length > 0) return postorderList;
   }
@@ -117,9 +144,8 @@ export class BinaryTree {
 
     if (node.value < nodeVal) {
       return this.depth(nodeVal, node.rightChild, edgeCount + 1);
-    } else {
-      return this.depth(nodeVal, node.leftChild, edgeCount + 1);
     }
+    return this.depth(nodeVal, node.leftChild, edgeCount + 1);
   }
 
   isBalanced() {
@@ -131,13 +157,13 @@ export class BinaryTree {
     this.root = this.buildTree(inorderList);
   }
 
-  prettyPrint(node = this.root, prefix = "", isLeft = true) { //Fucntion by TheOdinProject
+  prettyPrint(node = this.root, prefix = '', isLeft = true) { // Fucntion by TheOdinProject
     if (node.rightChild) {
-      this.prettyPrint(node.rightChild, `${prefix}${isLeft ? '|   ' : '    '}`, false)
+      this.prettyPrint(node.rightChild, `${prefix}${isLeft ? '|   ' : '    '}`, false);
     }
     console.log(`${prefix}${isLeft ? '└── ' : '┌── '}${node.value}`);
     if (node.leftChild) {
-      this.prettyPrint(node.leftChild, `${prefix}${isLeft ? '    ' : '|   '}`, true)
+      this.prettyPrint(node.leftChild, `${prefix}${isLeft ? '    ' : '|   '}`, true);
     }
   }
 
@@ -150,9 +176,8 @@ export class BinaryTree {
 
     if (leftBalance === -1 || rightBalance === -1 || diff > 1) {
       return -1;
-    } else {
-      return Math.max(leftBalance, rightBalance) + 1;
     }
+    return Math.max(leftBalance, rightBalance) + 1;
   }
 
   inorderNext(node) {
@@ -169,10 +194,9 @@ export class BinaryTree {
       node.value = successorNode.value;
       node.rightChild = this.remove(successorNode.value, node.rightChild);
       return node;
-    } else {
-      const replacementNode = node.rightChild || node.leftChild;
-      node = null;
-      return replacementNode;
     }
+    const replacementNode = node.rightChild || node.leftChild;
+    node = null;
+    return replacementNode;
   }
 }

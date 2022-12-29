@@ -1,0 +1,25 @@
+{
+  "name": "top-cs-module",
+  "version": "1.0.0",
+  "description": "Computer Science algoithms implementation in JavaScript",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CantarinoG/top-cs-module.git"
+  },
+  "author": "CantarinoG",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CantarinoG/top-cs-module/issues"
+  },
+  "homepage": "https://github.com/CantarinoG/top-cs-module#readme",
+  "devDependencies": {
+    "eslint": "^8.30.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.24.1"
+  }
+}
