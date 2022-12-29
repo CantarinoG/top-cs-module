@@ -93,4 +93,25 @@ export class LinkedList{
         return text;
     }
 }
+
+insertAt(value, index){
+    if(this.head){
+    if(index > 0  && index <= this.size()){
+    let newNode = new Node(value, this.at(index));
+    let node = this.at(index - 1);
+    node.next = newNode;} else if(index == 0){
+        this.prepend(value);
+    }
+}}
+
+removeAt(index){
+    if(this.head){
+        if(index > 0 && index < this.size()){
+            let node = this.at(index - 1);
+            node.next = this.at(index + 1);
+    } else if (index == 0){
+        this.head = this.at(1);
+    }
 }
+
+}}

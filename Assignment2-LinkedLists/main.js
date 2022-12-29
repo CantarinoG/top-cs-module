@@ -1,3 +1,5 @@
+//File for tests
+
 import { Node } from './Node.js';
 import { LinkedList } from './LInkedList.js';
 
@@ -11,4 +13,8 @@ list.append(3);
 console.log(list.toString());
 console.log('Size: ', list.size());
 
+list.removeAt(0);
+
+console.log(list.toString());
+console.log('Size: ', list.size());
 
