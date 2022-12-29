@@ -1,12 +1,13 @@
 <details open>
 <summary>English</summary>
 
-### Recursive Algorithms
+### Computer Science Algorithms
 
-Project from www.theodinproject.com.
-(https://www.theodinproject.com/lessons/javascript-recursion)
+A combination of three projects from the www.theodinproject.com Computer Science module.
 
-A simple JavaScript implementation of two algorithms using recursion: An algorithm to get the fibonacci sequence and mergesort.
+* The first project is about recursive algorithms.(https://www.theodinproject.com/lessons/javascript-recursion)
+* The second project is about linked lists.(https://www.theodinproject.com/lessons/javascript-linked-lists)
+* The third project is about binary search trees.(https://www.theodinproject.com/lessons/javascript-binary-search-trees)
 
 <br>
 </details>
@@ -14,12 +15,13 @@ A simple JavaScript implementation of two algorithms using recursion: An algorit
 <details>
 <summary>Português</summary>
 
-### Algoritmos Recursivos
+### Algoritmos de Ciência da Computação
 
-Projeto da www.theodinproject.com.
-(https://www.theodinproject.com/lessons/javascript-recursion)
+Uma combinação de três projetos do módulo de Ciência da Computação da www.theodinproject.com
 
-Uma simples implementação em JavaScript de dois algoritmos recursivos: Um algoritmo que retorna a sequência de fibonacci e o mergesort.
+* O primeiro projeto é sobre algoritmos recursivos.(https://www.theodinproject.com/lessons/javascript-recursion)
+* O segundo projeto é sobre listas encadeadas.(https://www.theodinproject.com/lessons/javascript-linked-lists)
+* O terceiro projeto é sobre buscar binária em estruturas de árvore.(https://www.theodinproject.com/lessons/javascript-binary-search-trees)
 
 <br>
 </details>
